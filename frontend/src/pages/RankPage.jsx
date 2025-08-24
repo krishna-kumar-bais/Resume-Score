@@ -65,8 +65,9 @@ export default function RankPage() {
 
         setLoading(true);
         try {
-            const response = await fetch('http://127.0.0.1:8000/upload_resume', {
-                method: 'POST',
+            const API_BASE_URL = "https://resume-score-nibq.onrender.com";
+            const response = await fetch(`${API_BASE_URL}/upload_resume`, {
+                method: "POST",
                 body: formData,
             });
             // console.log(response)
