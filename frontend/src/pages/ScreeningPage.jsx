@@ -38,10 +38,13 @@ function ScreeningPage() {
     selectedFiles.forEach(file => formData.append('files', file));
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/model/predict/', {
-        method: 'POST',
-        body: formData
+      const API_BASE_URL = "https://resume-score-nibq.onrender.com";
+
+      const response = await fetch(`${API_BASE_URL}/upload_resume`, {
+        method: "POST",
+        body: formData,
       });
+
       const result = await response.json();
       setOutput(JSON.stringify(result, null, 2));
       setRequiredCategory(selectedCategory); // Update required category only when screen button is pressed
