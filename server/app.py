@@ -15,24 +15,20 @@ from model.degreeScore import calculate_degree_score
 from model.majorScore import get_education_score
 app = FastAPI()
 from fastapi.middleware.cors import CORSMiddleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["https://resume-score-git-main-krishan-kumar-bais-projects.vercel.app"],  # your Vercel frontend URL
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 import pandas as pd
 
 # Enable CORS for communication between the frontend and backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Allow your frontend's URL
+    allow_origins=[
+        "http://localhost:5173",  # local dev frontend
+        "https://resume-score-git-main-krishan-kumar-bais-projects.vercel.app",  # deployed Vercel frontend
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Define the upload folder for storing files (if needed)
 UPLOAD_FOLDER = "uploads"
